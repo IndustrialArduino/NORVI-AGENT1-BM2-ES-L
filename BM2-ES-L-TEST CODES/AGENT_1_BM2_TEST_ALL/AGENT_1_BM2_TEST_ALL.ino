@@ -11,9 +11,8 @@
 #define PIXEL_COUNT 1
 
 #define INPUT1 27
-#define INPUT2 26
-#define INPUT3 18
-#define INPUT4 19
+#define INPUT2 36
+#define INPUT3 34
 
 #define RXD 23  // RX RS485
 #define TXD 13  // TX RS485
@@ -43,10 +42,7 @@ void setup() {
   
   pinMode(INPUT1, OUTPUT);
   pinMode(INPUT2, OUTPUT);
-  pinMode(INPUT3, OUTPUT);
-  pinMode(INPUT4, OUTPUT);
-
-
+  pinMode(INPUT3, OUTPUT);  
 
   delay(100);
   input_led_test();
@@ -57,7 +53,6 @@ void setup() {
   pinMode(INPUT1, INPUT);
   pinMode(INPUT2, INPUT);
   pinMode(INPUT3, INPUT);
-  pinMode(INPUT4, INPUT);
 
   
   ads1.begin(0x48);
@@ -97,7 +92,6 @@ void loop() {
   Serial.print("I1: ");Serial.println(digitalRead(INPUT1));
   Serial.print("I2: ");Serial.println(digitalRead(INPUT2));
   Serial.print("I3: ");Serial.println(digitalRead(INPUT3));
-  Serial.print("I4: ");Serial.println(digitalRead(INPUT4));
 
   adcString[0] = String(ads1.readADC_SingleEnded(0));
   adcString[0] = String(ads1.readADC_SingleEnded(0));
@@ -112,12 +106,14 @@ void loop() {
   adcString[3] = String(ads1.readADC_SingleEnded(3));
   delay(200);
   
-  Serial.print("A1: ");Serial.print(adcString[0]);Serial.print("  ");
+  Serial.print("A1: ");Serial.print(adcString[0]);
+  Serial.print("  ");
   Serial.print("A2: ");Serial.println(adcString[1]);
-  Serial.print("A3: ");Serial.print(adcString[2]);Serial.print("  ");
+  Serial.print("A3: ");Serial.print(adcString[2]);
+  Serial.print("  ");
   Serial.print("A4: ");Serial.println(adcString[3]);
 
-digitalWrite(FC, HIGH);                    // Make FLOW CONTROL pin HIGH
+  digitalWrite(FC, HIGH);                    // Make FLOW CONTROL pin HIGH
   delay(500);
   Serial1.println(F("RS485 01 SUCCESS"));    // Send RS485 SUCCESS serially
   delay(500);                                // Wait for transmission of data
@@ -137,35 +133,29 @@ digitalWrite(FC, HIGH);                    // Make FLOW CONTROL pin HIGH
 
 void input_led_test(){
   digitalWrite(27, LOW); 
-  digitalWrite(26, HIGH);
-  digitalWrite(18, HIGH);   
-  digitalWrite(19, HIGH);
+  digitalWrite(36, HIGH);
+  digitalWrite(34, HIGH);   
 
   delay(500);
   digitalWrite(27, HIGH); 
-  digitalWrite(26, LOW);
-  digitalWrite(18, HIGH);   
-  digitalWrite(19, HIGH);
+  digitalWrite(36, LOW);
+  digitalWrite(34, HIGH);   
 
   delay(500);
   digitalWrite(27, HIGH); 
-  digitalWrite(26, HIGH);
-  digitalWrite(18, LOW);   
-  digitalWrite(19, HIGH);
+  digitalWrite(36, HIGH);
+  digitalWrite(34, LOW);   
 
    delay(500);
   digitalWrite(27, HIGH); 
-  digitalWrite(26, HIGH);
-  digitalWrite(18, HIGH);   
-  digitalWrite(19, LOW);
+  digitalWrite(36, HIGH);
+  digitalWrite(34, HIGH);   
 
   
    delay(500);
   digitalWrite(27, HIGH); 
-  digitalWrite(26, HIGH);
-  digitalWrite(18, HIGH);   
-  digitalWrite(19, HIGH);
-
+  digitalWrite(36, HIGH);
+  digitalWrite(34, HIGH);   
   
 }
 
